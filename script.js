@@ -4,11 +4,12 @@ let audioElement = new Audio('5.mp3');
 let masterPlay=document.getElementById("masterPlay");
 let myProgressBar=document.getElementById('myProgressBar');
 let songItems=Array.from(document.getElementsByClassName('song'));
+let masterSongName = document.getElementById('masterSongName');
 let songs=[
     {songName:"Nee Singam" ,filePath:"1.mp3", coverPath:"nee.jpg"},
     {songName:"My Dil goes mmmm" , filePath:"2.mp3", coverPath:"my dil.jpg"},
     {songName:"Uff teri Ada" , filePath:"3.mp3", coverPath:"uff teri ada.jpeg"},
-    {songName:"Photograph dil" , filePath:"4.mp3", coverPath:"photograph.jpg"},
+    {songName:"Photograph" , filePath:"4.mp3", coverPath:"photograph.jpg"},
     {songName:"Tere Mere" , filePath:"5.mp3", coverPath:"Tere-Mere.jpg"},
     {songName:"Darkhaast" , filePath:"6.mp3", coverPath:"darkhaast.jpg"}
 
@@ -39,7 +40,7 @@ myProgressBar.addEventListener('change' ,()=>{
 })
 const makeAllPlays = ()=>{
     Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
-        element.classList.remove('fa-pause-circle');
+        element.classList.remove('fa-circle-pause');
         element.classList.add('fa-circle-play');
     })
 }
@@ -51,6 +52,7 @@ Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
         e.target.classList.remove('fa-circle-play');
         e.target.classList.add('fa-circle-pause');
         audioElement.src = `${songIndex+1}.mp3`;
+        masterSongName.innerText = songs[songIndex].songName;
         audioElement.currentTime = 0;
         audioElement.play();
         masterPlay.classList.remove('fa-circle-play');
@@ -66,6 +68,7 @@ document.getElementById('next').addEventListener('click', ()=>{
         songIndex += 1;
     }
     audioElement.src = `${songIndex+1}.mp3`;
+    masterSongName.innerText = songs[songIndex].songName;
     audioElement.currentTime = 0;
     audioElement.play();
     masterPlay.classList.remove('fa-circle-play');
@@ -81,6 +84,7 @@ document.getElementById('previous').addEventListener('click', ()=>{
         songIndex -= 1;
     }
     audioElement.src = `${songIndex+1}.mp3`;
+    masterSongName.innerText = songs[songIndex].songName;
     audioElement.currentTime = 0;
     audioElement.play();
     masterPlay.classList.remove('fa-circle-play');
